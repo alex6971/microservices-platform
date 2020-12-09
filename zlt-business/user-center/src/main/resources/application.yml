@@ -4,7 +4,12 @@ spring:
     username: ${zlt.datasource.username}
     password: ${zlt.datasource.password}
     driver-class-name: com.mysql.cj.jdbc.Driver
-
+  elasticsearch:
+    rest:
+      uris: ${zlt.elasticsearch.uris}
+      username: ${zlt.elasticsearch.username}
+      password: ${zlt.elasticsearch.password}
+      
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml
   #实体扫描，多个package用逗号或者分号分隔
@@ -12,8 +17,11 @@ mybatis-plus:
   global-config:
     db-config:
       id-type: auto
-
+      
 zlt:
+  audit-log:
+    enabled: true
+    log-type: es
   swagger:
     enabled: true
     title: 用户中心
@@ -47,3 +55,6 @@ zlt:
 #      jdbc-url: jdbc:mysql://${zlt.datasource.ip}:3306/logger-center?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
 #      username: ${zlt.datasource.username}
 #      password: ${zlt.datasource.password}
+logging:
+  level:
+    com.central.user.mapper: debug

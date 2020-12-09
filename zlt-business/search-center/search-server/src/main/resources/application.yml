@@ -6,6 +6,9 @@ spring:
       password: ${zlt.elasticsearch.password}
 
 zlt:
+  audit-log:
+    enabled: true
+    log-type: es
   indices:
     show: sys-log-*,mysql-slowlog-*,sys_user,point-log-*,audit-log-*
   swagger:

@@ -173,7 +173,7 @@ public class JsonUtil {
         }
         try {
             return MAPPER.readValue(json, List.class);
-        } catch (JsonProcessingException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -190,7 +190,7 @@ public class JsonUtil {
         try {
             JavaType javaType = MAPPER.getTypeFactory().constructParametricType(List.class, cls);
             return MAPPER.readValue(json, javaType);
-        } catch (JsonProcessingException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }

@@ -32,23 +32,36 @@ import javax.annotation.Resource;
 @AutoConfigureAfter(AuthorizationServerEndpointsConfigurer.class)
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
     /**
+     * @apiNote 授权模式专用对象
      * 注入authenticationManager 来支持 password grant type
      */
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    /** 
+     * @apiNote 认证业务对象
+     */
     @Resource
     private UserDetailsService userDetailsService;
 
+    /** 
+     * @apiNote Token保存策略
+     */
     @Autowired
     private TokenStore tokenStore;
 
     @Autowired
     private WebResponseExceptionTranslator webResponseExceptionTranslator;
 
+    /** 
+     * @apiNote 客户端信息来源 
+     */
     @Autowired
     private RedisClientDetailsService clientDetailsService;
 
+    /** 
+     * @apiNote 授权码模式数据来源
+     */
     @Autowired
     private RandomValueAuthorizationCodeServices authorizationCodeServices;
 

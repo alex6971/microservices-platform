@@ -4,3 +4,8 @@ server:
 spring:
   application:
     name: log-center
+  elasticsearch:
+    rest:
+      uris: ${zlt.elasticsearch.uris}
+      username: ${zlt.elasticsearch.username}
+      password: ${zlt.elasticsearch.password}    

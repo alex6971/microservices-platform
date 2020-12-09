@@ -32,13 +32,12 @@
                                class="layui-input">
                     </div>
                 </div>
-                <div class="layui-form-item">
+                <div class="layui-form-item layui-icon-verifyCode" style="display: none;">
                     <label class="layui-form-label"><i class="layui-icon layui-icon-vercode"></i></label>
                     <div class="layui-input-block">
                         <div class="layui-row inline-block">
                             <div class="layui-col-xs7">
                                 <input name="validCode" style="width:170px" type="text" lay-verify="required" placeholder="验证码" class="layui-input">
-                                <input name="deviceId" type="hidden"/>
                             </div>
                             <div class="layui-col-xs5" style="padding-left: 10px;">
                                 <img class="login-captcha" src="#" style="display:none">
@@ -47,6 +46,8 @@
                     </div>
                 </div>
                 <div class="layui-form-item">
+                    <input name="deviceId" type="hidden"/>
+                    <input name="enableVerifyCode" type="hidden"/>
                     <input name="grant_type" type="hidden" value="password_code"/>
                     <button lay-filter="login-submit" class="layui-btn layui-btn-fluid" lay-submit>登 录</button>
                 </div>
@@ -79,6 +80,7 @@
             return;
         }
         $("input[name='deviceId']").val(uuid);
+        $("input[name='enableVerifyCode']").val(config.enableVerifyCode);
 
         // 表单提交
         form.on('submit(login-submit)', function (obj) {
@@ -114,15 +116,19 @@
             //阻止表单跳转
             return false;
         });
-
-        // 图形验证码
-        $('.login-captcha').attr("src", config.base_server + "api-uaa/validata/code/"+uuid);
-        $('.login-captcha').attr("style", "");
-
-        // 图形验证码
-        $('.login-captcha').click(function () {
-            this.src = this.src + '?t=' + (new Date).getTime();
-        });
+        if (config.enableVerifyCode) {
+            // 图形验证码
+            $('.login-captcha').attr("src", config.base_server + "api-uaa/validata/code/"+uuid);
+            $('.login-captcha').attr("style", "");
+            $(".layui-icon-verifyCode").removeAttr("style");
+    
+            // 图形验证码
+            $('.login-captcha').click(function () {
+                this.src = this.src + '?t=' + (new Date).getTime();
+            });
+        } else {
+            $("input[name='validCode']").removeAttr("lay-verify");
+        }
     });
 </script>
 </body>

@@ -5,3 +5,6 @@ zlt:
     description: 日志中心接口文档
     version: 1.0
     base-package: com.central.log.controller
+  audit-log:
+    enabled: true
+    log-type: es

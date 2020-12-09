@@ -17,7 +17,10 @@
 			<groupId>com.zlt</groupId>
 			<artifactId>zlt-log-spring-boot-starter</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>com.zlt</groupId>
+			<artifactId>zlt-ribbon-spring-boot-starter</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>com.alibaba.cloud</groupId>
 			<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>

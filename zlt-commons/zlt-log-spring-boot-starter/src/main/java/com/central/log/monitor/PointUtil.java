@@ -27,6 +27,10 @@ public class PointUtil {
     public static void info(String id, String type, String message) {
         log.info(MSG_PATTERN, id, type, message);
     }
+    
+    public static void info(String formate, String message) {
+        log.info(formate, message);
+    }
 
     public static void debug(String id, String type, String message) {
         log.debug(MSG_PATTERN, id, type, message);

@@ -13,9 +13,15 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>8</java.version>
+        
+<!--        <spring-cloud-alibaba-dependencies.version>2.2.1.RELEASE</spring-cloud-alibaba-dependencies.version>-->
+<!--        <spring-boot-dependencies.version>2.2.1.RELEASE</spring-boot-dependencies.version>-->
+<!--        <spring-cloud-dependencies.version>Hoxton.SR5</spring-cloud-dependencies.version>-->
+        
         <spring-cloud-alibaba-dependencies.version>2.2.3.RELEASE</spring-cloud-alibaba-dependencies.version>
         <spring-boot-dependencies.version>2.2.10.RELEASE</spring-boot-dependencies.version>
         <spring-cloud-dependencies.version>Hoxton.SR8</spring-cloud-dependencies.version>
+        
         <commons-collections4.version>4.4</commons-collections4.version>
         <swagger.version>2.9.2</swagger.version>
         <swagger.ui.version>1.8.7</swagger.ui.version>
@@ -77,12 +83,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -416,15 +416,14 @@
     </repositories>
     <distributionManagement>
         <repository>
-            <id>releases</id>
-            <name>releases Repository</name>
-            <url>http://192.168.28.138:8081/repository/maven-releases/</url>
+            <id>maven-releases</id>
+            <name>internal releases</name>
+            <url>http://172.16.90.163:8081/repository/maven-releases/</url>
         </repository>
-
         <snapshotRepository>
-            <id>snapshots</id>
-            <url>http://192.168.28.138:8081/repository/maven-snapshots/</url>
-            <uniqueVersion>true</uniqueVersion>
+            <id>maven-snapshots</id>
+            <name>internal snapshot</name>
+            <url>http://172.16.90.163:8081/repository/maven-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
 

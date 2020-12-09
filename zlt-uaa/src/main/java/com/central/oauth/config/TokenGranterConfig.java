@@ -73,17 +73,7 @@ public class TokenGranterConfig {
     @Bean
     public TokenGranter tokenGranter() {
         if (tokenGranter == null) {
-            tokenGranter = new TokenGranter() {
-                private CompositeTokenGranter delegate;
-
-                @Override
-                public OAuth2AccessToken grant(String grantType, TokenRequest tokenRequest) {
-                    if (delegate == null) {
-                        delegate = new CompositeTokenGranter(getAllTokenGranters());
-                    }
-                    return delegate.grant(grantType, tokenRequest);
-                }
-            };
+            tokenGranter = new CustTokenGranter(getAllTokenGranters());
         }
         return tokenGranter;
     }
@@ -176,3 +166,22 @@ public class TokenGranterConfig {
         }
     }
 }
+
+class CustTokenGranter implements TokenGranter {
+
+    private CompositeTokenGranter delegate;
+    private final List<TokenGranter> tokenGranters;
+
+    public CustTokenGranter(List<TokenGranter> tokenGranters) {
+        this.tokenGranters = tokenGranters;
+    }
+
+    @Override
+    public OAuth2AccessToken grant(String grantType, TokenRequest tokenRequest) {
+        if (delegate == null) {
+            delegate = new CompositeTokenGranter(tokenGranters);
+        }
+        return delegate.grant(grantType, tokenRequest);
+    }
+}
+

@@ -29,6 +29,7 @@ import java.util.concurrent.TimeUnit;
  * Github: https://github.com/zlt2000
  */
 public class SuperServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, T> implements ISuperService<T> {
+
     @Override
     public boolean saveIdempotency(T entity, DistributedLock locker, String lockKey, Wrapper<T> countWrapper, String msg) throws Exception {
         if (locker == null) {
@@ -37,9 +38,7 @@ public class SuperServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M,
         if (StrUtil.isEmpty(lockKey)) {
             throw new LockException("lockKey is null");
         }
-        try (
-                ZLock lock = locker.tryLock(lockKey, 10, 60, TimeUnit.SECONDS);
-                ) {
+        try (ZLock lock = locker.tryLock(lockKey, 10, 60, TimeUnit.SECONDS)) {
             if (lock != null) {
                 //判断记录是否已存在
                 int count = super.count(countWrapper);

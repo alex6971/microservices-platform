@@ -16,6 +16,7 @@ layui.define(function (exports) {
         apiUrl = defUrl;
     }
     var config = {
+        enableVerifyCode: false, // 是否需要开启验证码
         base_server: apiUrl,
         tableName: 'easyweb',  // 存储表名
         clientId: 'webApp', // 应用id

@@ -1,7 +1,6 @@
 package com.central.log.service.impl;
 
 import com.central.log.model.Audit;
-import com.central.log.properties.AuditLogProperties;
 import com.central.log.properties.LogDbProperties;
 import com.central.log.service.IAuditService;
 import com.zaxxer.hikari.HikariDataSource;
