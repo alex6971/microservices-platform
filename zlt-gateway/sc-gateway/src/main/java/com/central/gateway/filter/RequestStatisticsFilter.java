@@ -34,8 +34,8 @@ public class RequestStatisticsFilter implements GlobalFilter, Ordered {
         PointUtil.debug("1", "request-statistics",
                 "ip=" + ReactiveAddrUtil.getRemoteAddr(request)
                         + "&browser=" + getBrowser(userAgent.getBrowser().name())
+                        + "&getURI=" + request.getURI().toString()
                         + "&operatingSystem=" + getOperatingSystem(userAgent.getOperatingSystem().name()));
-
         return chain.filter(exchange);
     }
 

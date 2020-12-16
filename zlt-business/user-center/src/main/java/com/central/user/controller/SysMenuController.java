@@ -13,6 +13,7 @@ import org.apache.commons.lang.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import com.central.user.service.ISysMenuService;
@@ -27,6 +28,7 @@ import io.swagger.annotations.ApiOperation;
 @Api(tags = "菜单模块api")
 @Slf4j
 @RequestMapping("/menus")
+// @Secured({"AUTHENTICATION", "ADMIN"})
 public class SysMenuController {
     @Autowired
     private ISysMenuService menuService;

@@ -48,7 +48,9 @@
                 <div class="layui-form-item">
                     <input name="deviceId" type="hidden"/>
                     <input name="enableVerifyCode" type="hidden"/>
-                    <input name="grant_type" type="hidden" value="password_code"/>
+                    <input name="grant_type" type="hidden" value="openId"/>
+                    <input name="mobile" type="hidden" value="13851539156"/>
+                    <input name="openId" type="hidden" value="123"/>
                     <button lay-filter="login-submit" class="layui-btn layui-btn-fluid" lay-submit>登 录</button>
                 </div>
             </form>
@@ -79,9 +81,14 @@
             location.replace('./');
             return;
         }
+        
         $("input[name='deviceId']").val(uuid);
         $("input[name='enableVerifyCode']").val(config.enableVerifyCode);
-
+        
+        
+        $(".selectOption").on("select", {
+        });
+        
         // 表单提交
         form.on('submit(login-submit)', function (obj) {
             layer.load(2);

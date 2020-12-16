@@ -5,6 +5,7 @@ import java.util.Map;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,6 +29,7 @@ import io.swagger.annotations.ApiOperation;
 @Slf4j
 @RestController
 @Api(tags = "角色模块api")
+// @Secured({"AUTHENTICATION", "ADMIN"})
 public class SysRoleController {
     @Autowired
     private ISysRoleService sysRoleService;

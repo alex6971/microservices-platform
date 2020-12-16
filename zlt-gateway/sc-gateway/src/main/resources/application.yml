@@ -6,7 +6,7 @@ spring:
           lowerCaseServiceId: true
           enabled: true
       routes:
-        - id: auth
+        - id: auser-centeruth
           uri: lb://uaa-server
           predicates:
             - Path=/api-uaa/**

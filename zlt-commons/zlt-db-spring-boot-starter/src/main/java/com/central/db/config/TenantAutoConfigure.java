@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.parser.SqlParserHelper;
 import com.baomidou.mybatisplus.extension.plugins.tenant.TenantHandler;
 import com.central.common.context.TenantContextHolder;
 import com.central.common.properties.TenantProperties;
+import lombok.extern.slf4j.Slf4j;
 import net.sf.jsqlparser.expression.Expression;
 import net.sf.jsqlparser.expression.NullValue;
 import net.sf.jsqlparser.expression.StringValue;
@@ -19,6 +20,7 @@ import org.springframework.context.annotation.Bean;
  * @author zlt
  * @date 2019/8/5
  */
+@Slf4j
 @EnableConfigurationProperties(TenantProperties.class)
 public class TenantAutoConfigure {
     @Autowired
@@ -67,9 +69,11 @@ public class TenantAutoConfigure {
     public ISqlParserFilter sqlParserFilter() {
         return metaObject -> {
             MappedStatement ms = SqlParserHelper.getMappedStatement(metaObject);
-            return tenantProperties.getIgnoreSqls().stream().anyMatch(
-                    (e) -> e.equalsIgnoreCase(ms.getId())
-            );
+            log.error("过滤不需要根据租户隔离的MappedStatement, msid={}", ms.getId());
+            boolean match = tenantProperties.getIgnoreSqls()
+                    .stream()
+                    .anyMatch((e) -> e.equalsIgnoreCase(ms.getId()));
+            return match;
         };
     }
 }
