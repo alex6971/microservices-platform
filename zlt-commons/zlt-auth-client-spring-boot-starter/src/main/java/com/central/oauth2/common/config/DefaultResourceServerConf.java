@@ -61,6 +61,23 @@ public class DefaultResourceServerConf extends ResourceServerConfigurerAdapter {
                     .frameOptions().disable()
                 .and()
                     .csrf().disable();
+
+        http.authorizeRequests()
+                //指定不同请求方式访问资源所需要的权限，一般查询是read，其余是write。
+                .antMatchers(HttpMethod.GET, "/**").access("#oauth2.hasScope('read')")
+                .antMatchers(HttpMethod.POST, "/**").access("#oauth2.hasScope('write')")
+                .antMatchers(HttpMethod.PATCH, "/**").access("#oauth2.hasScope('write')")
+                .antMatchers(HttpMethod.PUT, "/**").access("#oauth2.hasScope('write')")
+                .antMatchers(HttpMethod.DELETE, "/**").access("#oauth2.hasScope('write')")
+                .and()
+                .headers().addHeaderWriter((request, response) -> {
+                    response.addHeader("Access-Control-Allow-Origin", "*");//允许跨域
+                    if (request.getMethod().equals("OPTIONS")) {
+                        //如果是跨域的预检请求，则原封不动向下传达请求头信息
+                        response.setHeader("Access-Control-Allow-Methods", request.getHeader("Access-Control-Request-Method"));
+                        response.setHeader("Access-Control-Allow-Headers", request.getHeader("Access-Control-Request-Headers"));
+                    }
+                });
     }
 
     /**

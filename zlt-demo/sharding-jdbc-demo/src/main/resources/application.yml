@@ -9,9 +9,9 @@ spring:
 
 zlt:
   datasource:
-    ip: 192.168.28.131
+    ip: 172.16.90.163
     username: root
-    password: 1q2w3e4r
+    password: root
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml

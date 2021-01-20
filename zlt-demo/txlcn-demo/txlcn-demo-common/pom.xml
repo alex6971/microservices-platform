@@ -33,6 +33,12 @@
         <dependency>
             <groupId>com.zlt</groupId>
             <artifactId>zlt-log-spring-boot-starter</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>spring-data-elasticsearch</artifactId>
+                    <groupId>org.springframework.data</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.zlt</groupId>
